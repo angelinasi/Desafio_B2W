@@ -2,4 +2,4 @@
 
 Para executar localmente, utilizando o DirectRunner do Apache Beam:
 
-> $ python abandonocarrinho.py --input /home/user/folder/input --output /home/user/folder/output
+> $ python3 abandonocarrinho.py --input /home/user/folder/input/page-views.json --output /home/user/folder/output/abandoned-carts
