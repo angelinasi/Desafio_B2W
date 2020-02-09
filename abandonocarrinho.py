@@ -10,7 +10,7 @@ from apache_beam.io import WriteToText
 from apache_beam.options.pipeline_options import PipelineOptions
 
 class JsonCoder(object):
-
+  
   def encode(self, x):
     return json.dumps(x)
 
@@ -18,6 +18,14 @@ class JsonCoder(object):
     return json.loads(x)
 
 def filtrar(interacoes, carrinho, pagamento):
+  
+  """ 
+  Avaliação do abandono de carrinho:
+    - Relação das últimas interações do cliente com as páginas 'basket' e 'checkout'
+    - Se a última transição 'basket' => 'checkout' levou mais do que 10 minutos
+    - Se não houve interação com a página 'checkout' ao final da sessão 
+  """
+  
   interacao_carrinho = list(filter(lambda x: interacoes['customer'] in x, carrinho))
   interacao_pagamento = list(filter(lambda x: interacoes['customer'] in x, pagamento))
 
@@ -66,4 +74,5 @@ def run(argv=None):
     )
 
 if __name__ == '__main__':
+  
   run()
